@@ -6,12 +6,12 @@ To install Terraform into a container running the image from https://hub.docker.
 
 ## Terraform Authentication
 
-Login by doing 'gcloud auth application-default login' which will write application credentials to a well-known location. Refer to
-the documentation at https://cloud.google.com/docs/authentication/application-default-credentials Note that these credentials are
-different to gcloud credentials. Refer https://cloud.google.com/docs/authentication/provide-credentials-adc  Once logged in Terraform
-will use those credentials.
+Login by doing 'gcloud auth application-default login' which will write application credentials to a well-known location which will then be used
+by Terraform (well - the Gogle Terraform provider I guess). Note that this is different to logging into the gcloud CLI. Refer to the documentation
+at https://cloud.google.com/docs/authentication/application-default-credentials that explains Application Default Credentials.
 
-Can also (I think) create a service account using the guidelines found at https://developer.hashicorp.com/terraform/tutorials/gcp-get-started/build-the-google-cloud
+Another method to authenticate is to create a service account. Using the instructions at https://developer.hashicorp.com/terraform/tutorials/gcp-get-started/build-the-google-cloud
+the process is to:
 
 - Go to https://console.cloud.google.com
 - Select 'IAM & Admin'

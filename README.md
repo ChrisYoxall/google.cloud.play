@@ -23,4 +23,6 @@ Login to gcloud CLI:
 
     gcloud auth login
 
+Then set the default project
 
+     gcloud config set project PROJECT_ID
