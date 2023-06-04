@@ -1,4 +1,12 @@
 terraform {
+
+    cloud {
+      organization = "chris-demo"
+      workspaces {
+        name = "VM"
+      }
+  }
+
   required_providers {
 
     // https://registry.terraform.io/providers/hashicorp/google/latest/docs
