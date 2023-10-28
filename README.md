@@ -9,7 +9,7 @@ https://console.cloud.google.com
 ## Using Google Cloud SDK Image
 
 Instead of installing the Google Cloud Tools on local machine can use the image from https://hub.docker.com/r/google/cloud-sdk/ and mount this repo
-into the container. Can then edit the files with tool of your choice and run from the container.
+into the container. Can then edit the files with tool of your choice from outside the container and run the code from inside the container.
 
 Check versions:
 

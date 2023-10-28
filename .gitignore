@@ -1,4 +1,7 @@
 
+# Jetbrains IDE directory
+**/.idea/
+
 # Terraform
 .terraform/
 .terraform.lock.hcl
