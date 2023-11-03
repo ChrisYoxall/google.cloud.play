@@ -1,10 +1,10 @@
 terraform {
 
-    cloud {
-      organization = "chris-demo"
-      workspaces {
-        name = "VM"
-      }
+  cloud {
+    organization = "chris-demo"
+    workspaces {
+      name = "VM"
+    }
   }
 
   required_providers {
@@ -12,7 +12,7 @@ terraform {
     // https://registry.terraform.io/providers/hashicorp/google/latest/docs
     google = {
       source  = "hashicorp/google"
-      version = "4.67.0"
+      version = "5.4.0"
     }
   }
 }
@@ -47,12 +47,16 @@ resource "google_compute_firewall" "allow_ssh" {
   }
 }
 
-// List images: gcloud compute images list --project XXXXX
-// Look into 'cos-cloud/cos-stable' which is the Google container optimised OS designed to 
-//  run Docker containers quickly, efficiently, and securely https://cloud.google.com/container-optimized-os/docs
 resource "google_compute_instance" "vm_instance" {
   name         = "terraform-instance"
-  machine_type = "f1-micro"
+  machine_type = "n2-standard-2"
+
+  scheduling {
+    provisioning_model = "SPOT"
+    preemptible        = true
+    automatic_restart  = false
+  }
+
 
   boot_disk {
     initialize_params {

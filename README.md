@@ -31,3 +31,18 @@ Then set the default project
 
 
 The gcloud documentation is at https://cloud.google.com/sdk/gcloud/reference
+
+## GCP Notes ##
+
+
+
+
+### Virtual Machines ###
+
+Spot Instances Documentation: https://cloud.google.com/compute/docs/instances/spot
+
+To use spot instances set the 'provisioning model' to spot, 'preemptible' to true and 'automatic_restart' to false (accoring to Terraform provider documentation).
+
+List images: gcloud compute images list --project XXXXX
+
+Look into Container-Optimized OS that is optimized for running Docker containers: https://cloud.google.com/container-optimized-os/docs
