@@ -24,19 +24,20 @@ provider "google" {
   zone    = "australia-southeast1-a"
 }
 
-// Will need to enable the 'Compute Engine API' for the project
 
 // https://cloud.google.com/vpc/docs/vpc
 resource "google_compute_network" "vpc_network" {
-  name = "terraform-network"
+  name = "test-network"
+  auto_create_subnetworks = false
+  routing_mode            = "REGIONAL"
 }
 
 resource "google_compute_address" "static_ip" {
-  name = "terraform-ip"
+  name = "vm-ip"
 }
 
 resource "google_compute_firewall" "allow_ssh" {
-  name          = "terraform-allow-ssh"
+  name          = "allow-ssh"
   network       = google_compute_network.vpc_network.name
   target_tags   = ["allow-ssh"]
   source_ranges = ["0.0.0.0/0"]
