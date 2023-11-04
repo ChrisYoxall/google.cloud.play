@@ -34,6 +34,12 @@ The gcloud documentation is at https://cloud.google.com/sdk/gcloud/reference
 
 ## GCP Notes ##
 
+Google Cloud resources are arranged in a hierarchy (https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarch):
+
+- Organizations
+- Folders
+- Projects
+- Resources
 
 
 ### Virtual Private Cloud (VPC) ###

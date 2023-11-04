@@ -1,10 +1,15 @@
-# Terraform
+# Terraform #
 
 To install Terraform into a container running the image from https://hub.docker.com/r/google/cloud-sdk/ (see README.md in root directory) run the
 'install_terraform' from within a container based on that image.
 
+## Linking GCP Resources ##
 
-## Terraform Authentication
+Most resources managed by the GCP provider have the 'self_link' attribute to uniquely identify them. This can be used instead of other attributes
+commonly used in other providers such as name or id. Refer https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/getting_started#linking-gcp-resources
+
+
+## Terraform Authentication ##
 
 Login by doing 'gcloud auth application-default login' which will write application credentials to a well-known location which will then be used
 by Terraform (well - the Gogle Terraform provider I guess). Note that this is different to logging into the gcloud CLI. Refer to the documentation
@@ -29,7 +34,7 @@ To download the new key:
 
 
 
-## Logon to the VM
+## Logon to the VM ##
 
 For Linux machines it's recommended to use SSH. There are two SSH options:
 

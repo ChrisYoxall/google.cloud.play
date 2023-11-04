@@ -17,19 +17,29 @@ terraform {
   }
 }
 
+variable "region" {
+  type    = string
+  default = "australia-southeast1"
+}
 
 provider "google" {
   project = "terraform-play-387210"
-  region  = "australia-southeast1"
+  region  = var.region
   zone    = "australia-southeast1-a"
 }
 
 
-// https://cloud.google.com/vpc/docs/vpc
 resource "google_compute_network" "vpc_network" {
   name = "test-network"
   auto_create_subnetworks = false
   routing_mode            = "REGIONAL"
+}
+
+resource "google_compute_subnetwork" "vpc_subnet" {
+  name          = "test-subnet"
+  ip_cidr_range = "10.1.0.0/16"
+  network       = google_compute_network.vpc_network.self_link
+  region        = var.region
 }
 
 resource "google_compute_address" "static_ip" {
@@ -38,7 +48,7 @@ resource "google_compute_address" "static_ip" {
 
 resource "google_compute_firewall" "allow_ssh" {
   name          = "allow-ssh"
-  network       = google_compute_network.vpc_network.name
+  network       = google_compute_network.vpc_network.self_link
   target_tags   = ["allow-ssh"]
   source_ranges = ["0.0.0.0/0"]
 
@@ -66,7 +76,8 @@ resource "google_compute_instance" "vm_instance" {
   }
 
   network_interface {
-    network = google_compute_network.vpc_network.name
+    network = google_compute_network.vpc_network.self_link
+    subnetwork = google_compute_subnetwork.vpc_subnet.self_link
     access_config {
       nat_ip = google_compute_address.static_ip.address
     }

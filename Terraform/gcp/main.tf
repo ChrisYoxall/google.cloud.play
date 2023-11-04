@@ -39,22 +39,22 @@ variable "region" {
 }
 
 
-resource "google_compute_network" "network-one" {
+resource "google_compute_network" "network_one" {
   name                    = "network-one"
   auto_create_subnetworks = false
   routing_mode            = "REGIONAL"
 }
 
-resource "google_compute_subnetwork" "subnet-one" {
+resource "google_compute_subnetwork" "subnet_one" {
   name          = "subnet-one"
   ip_cidr_range = "10.1.0.0/16"
-  network       = google_compute_network.network-one.self_link
+  network       = google_compute_network.network_one.self_link
   region        = var.region
 }
 
 resource "google_compute_firewall" "allow_ssh" {
   name          = "allow-ssh"
-  network       = google_compute_network.network-one.self_link
+  network       = google_compute_network.network_one.self_link
   target_tags   = ["allow-ssh"]
   source_ranges = ["0.0.0.0/0"]
 
@@ -69,8 +69,8 @@ resource "google_compute_instance" "vm_instance" {
   machine_type = "n2-standard-2"
 
   network_interface {
-    network    = google_compute_network.network-one.self_link
-    subnetwork = google_compute_subnetwork.subnet-one.self_link
+    network    = google_compute_network.network_one.self_link
+    subnetwork = google_compute_subnetwork.subnet_one.self_link
   }
 
   boot_disk {
