@@ -1,5 +1,3 @@
-// Taken from tutorials at https://rnemet.dev/tags/terraform/
-
 terraform {
 
   cloud {

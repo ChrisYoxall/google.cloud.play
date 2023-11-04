@@ -36,6 +36,12 @@ The gcloud documentation is at https://cloud.google.com/sdk/gcloud/reference
 
 
 
+### Virtual Private Cloud (VPC) ###
+
+VPC provides networking for your cloud-based services that is global, scalable, and flexible.
+
+
+
 
 ### Virtual Machines ###
 

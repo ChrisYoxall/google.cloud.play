@@ -44,9 +44,14 @@ If OS Loign is enabled can't use metadata login. To check whether its enabled or
 
 Check whether the key 'enable-oslogin' exists and is set to true.
 
-If OS Login is not enabled can connect by doing:
+If OS Login is not enabled can connect by doing (generated from the Google Cloud Console):
 
-    gcloud compute ssh chris@vm_instance_name --project XXXXX
+    gcloud compute ssh --zone "zone_here "vm_name_here" --project "project_here"
 
-Note that connecting as root is not allowed. By default the above command will connect as current user. Have specified 'chris' as user above.
+Note that connecting as root is not allowed and by default the above command will connect as current user.
 
+Can use the Google Cloud Console to logon to the VM via a web browser interface.
+
+For VM's without an external IP can use Identity-Aware Proxy (IAP) for administrative access. This seems to happen automatically as
+when using the command above this message is displayed: "External IP address was not found; defaulting to using IAP tunneling".Can
+specify '--tunnel-through-iap' as part of the command to make this explicit. IAP documentation is https://cloud.google.com/iap/docs/using-tcp-forwarding
